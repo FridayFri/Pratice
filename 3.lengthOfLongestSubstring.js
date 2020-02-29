@@ -9,8 +9,9 @@ var lengthOfLongestSubstring = function(s) {
     if (array.includes(item)) {
       console.log("item", item);
       let index = array.indexOf(item);
-      console.log(index);
+      console.log('index',index);
       array.splice(0, index + 1);
+      console.log(array.splice(0, index + 1))
     }
     array.push(item);
     console.log('max', max)
