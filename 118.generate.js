@@ -3,8 +3,6 @@ var generate = function (numRows) {
   if (numRows <= 0) {
     return result;
   }
-  let i = 0,
-    j = 0;
   for (let i = 0; i < numRows; i++) {
     const subArr = [];
     for (let j = 0; j <= i; j++) {
