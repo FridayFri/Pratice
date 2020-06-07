@@ -9,8 +9,6 @@ var isSameTree = function (p, q) {
   if (q.val !== p.val) {
     return false;
   }
-////111122222
-/// 3333
   return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 };
 
