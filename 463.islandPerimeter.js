@@ -3,22 +3,22 @@ var islandPerimeter = function (grid) {
   for (let i = 0; i < grid.length; i++) {
     let element = grid[i];
     for (let j = 0; j < element.length; j++) {
-        if(grid[i][j]===1){
-            count +=4
-            if(j>0){
-                if(grid[i][j-1] === 1){
-                    count -= 2
-                }
-            }
-            if(i>0){
-                if(grid[i-1][j]===1){
-                    count -=2
-                }
-            }
+      if (grid[i][j] === 1) {
+        count += 4;
+        if (j > 0) {
+          if (grid[i][j - 1] === 1) {
+            count -= 2;
+          }
         }
+        if (i > 0) {
+          if (grid[i - 1][j] === 1) {
+            count -= 2;
+          }
+        }
+      }
     }
   }
-  return count
+  return count;
 };
 
 var grid = [
