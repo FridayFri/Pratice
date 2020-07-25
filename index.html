@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>防抖|节流</title>
+  </head>
+  <body>
+    <button id="debounce">点我防抖！</button>
+    <button id="throttle">点我节流！</button>
+    <script>
+      window.onload = function () {
+          var a = debounce(()=>sayDebounce("防抖防抖！！"))
+
+        var myDebounce = document.getElementById("debounce");
+        myDebounce.addEventListener("click", a);
+        var myThrottle = document.getElementById("throttle");
+        myThrottle.addEventListener("click", throttle(sayThrottle));
+      };
+      function debounce(fn) {
+        let timer = null;
+        return function () {
+          clearTimeout(timer);
+          timer = setTimeout((...a) => {
+            fn.call(fn, arguments);
+            console.log('arguments', a)
+          }, 1000);
+        };
+      }
+      function sayDebounce(str) {
+        console.log(str);
+      }
+
+      function throttle(fn) {
+        let timer = null;
+        return function () {
+          if (!timer) {
+            timer = setTimeout(() => {
+              fn.call(fn, arguments);
+              timer = null;
+            }, 1000);
+          }
+        };
+      }
+      function sayThrottle() {
+        console.log("节流节流！！");
+      }
+    </script>
+  </body>
+</html>
