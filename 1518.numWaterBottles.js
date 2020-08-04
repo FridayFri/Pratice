@@ -1,9 +1,11 @@
 var numWaterBottles = function (numBottles, numExchange) {
   let res = numBottles;
-  while (numBottles >= numExchange) {
-    numBottles -= numExchange - 1;
-    console.log('numBottles', numBottles)
-    res += 1;
+  let tem = numBottles;
+  while (tem > numExchange) {
+    const a = Math.floor(tem / numExchange);
+    console.log(a);
+    tem=tem-numExchange*a+a
+    res += a;
   }
   return res;
 };
