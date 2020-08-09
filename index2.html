@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>文件上传按钮修改样式</title>
+  <style>
+    .file {
+      position: relative;
+      display: inline-block;
+      border: 1px solid rgba(154, 154, 154, 1);
+      border-radius: 4px;
+      width: 60px;
+      height: 28px;
+      color: #303133;
+      line-height: 28px;
+      text-align: center;
+      text-decoration: none;
+      text-indent: 0;
+      font-size: 14px;
+    }
+
+    .file input {
+      position: absolute;
+      width: 60px;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .file:hover {
+      background: linear-gradient(to right, #FFAD4A 0, #FF9362 50%);
+      background: -webkit-linear-gradient(to right, #FFAD4A 0, #FF9362 50%);
+      border-color: #FFAD4A;
+      color: #fff !important;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="javascript:;" class="file">文案文案<input type="file" ></a>
+</body>
+</html>
