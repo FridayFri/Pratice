@@ -9,9 +9,7 @@ var findContentChildren = function (g, s) {
   let sum = 0,
     n = 0;
   for (let i = 0; i < s.length; i++) {
-    console.log(g[n], s[i])
     if (n < g.length && g[n] <= s[i]) {
-        console.log(g[n], s[i])
       sum++;
       n++;
     }
