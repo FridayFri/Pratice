@@ -57,21 +57,21 @@ var input = {
 function myFlatten(data) {
   const hashMap = {};
   function helper(data, key = "") {
-    console.log("param", data, key);
     for (const i in data) {
       if (data[i] === null || data[i] === undefined) continue;
       let k;
-      if (Array.isArray(data)) {
+      if (Array.isArray(data[i])) {
         k = key ? `${key}[${i}]` : i;
+        console.log("k", k, "key", key);
       } else {
         k = key ? `${key}.${i}` : i;
+        console.log("===", (k = key), k, i);
       }
       if (typeof data[i] === "object") {
         helper(data[i], k);
       } else {
         hashMap[k] = data[i];
       }
-      console.log("result", hashMap);
     }
   }
   helper(data);
