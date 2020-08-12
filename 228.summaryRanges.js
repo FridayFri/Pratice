@@ -23,35 +23,3 @@ function summaryRange(nums) {
 }
 const nums = [0, 1, 2, 4, 5, 7, 13, 15, 16];
 console.log(summaryRange(nums));
-
-function summaryRanges(nums) {
-  const res = [];
-  let min = 0,
-    max = 0;
-  let temp = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    if (temp === nums[i] - 1) {
-      max = i;
-      temp = nums[i];
-      console.log("111");
-    } else {
-      if (nums[i] === 13) {
-        console.log(min, max, temp, "555");
-      }
-      if (min === max) {
-        res.push(temp.toString());
-        temp = numsi ;
-        min = max = i ;
-        console.log("nums", nums[i]);
-      } else {
-        res.push(`${nums[min]}->${nums[max]}`);
-        console.log("temp", temp, nums[i]);
-        temp = nums[i];
-        min = max = i;
-      }
-    }
-  }
-  return res;
-}
-
-console.log(summaryRanges(nums));
