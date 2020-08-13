@@ -14,6 +14,7 @@ var mincostTickets = function (days, costs) {
       dp[i] = dp[i - 1]; //如果今天不旅行，那肯定不花钱，跟前一天的钱一样。
     }
   }
+  console.log(dp)
   return dp[dp.length - 1];
 };
 
