@@ -203,37 +203,36 @@ MyPromise.race = function (promiseArr) {
   });
 };
 
-let promise1 = new MyPromise((resolve, reject) => {
-  console.log("aaaa");
-  setTimeout(() => {
-    resolve(1111);
-    console.log(1111);
-  }, 1000);
-});
+MyPromise.resolve = function (value) {
+  let promise;
+  promise = new MyPromise((resolve, reject) => {
+    this.prototype.resolvePromise(promise, value, resolve, reject);
+  });
+  return promise;
+};
 
-let promise2 = new MyPromise((resolve, reject) => {
-  console.log("bbbb");
-  setTimeout(() => {
-    reject(2222);
-    console.log(2222);
-  }, 2000);
-});
+MyPromise.reject = function (reason) {
+  return new MyPromise((resolve, reject) => {
+    reject(reason);
+  });
+};
 
-let promise3 = new MyPromise((resolve, reject) => {
-  console.log("cccc");
-  setTimeout(() => {
-    resolve(3333);
-    console.log(3333);
-  }, 3000);
-});
+MyPromise.stop = function () {
+  return new Promise(function () {});
+};
 
-Promise.race([promise1, promise2, promise3]).then(
-  (value) => {
-    console.log("all value", value);
-  },
-  (reason) => {
-    console.log("all reason", reason);
-  }
-);
+MyPromise.reject(1111)
+  .then((value) => {
+    console.log("value1", value);
+    return new MyPromise((resolve, reject) => {
+      resolve(2222);
+    });
+  })
+  .then((value) => {
+    console.log("value2", value);
+  })
+  .catch((reason) => {
+    console.log("reason", reason);
+  });
 
 // console.log(promise);
