@@ -37,40 +37,60 @@ function MyPromise(executor) {
 MyPromise.prototype.then = function (onFulfilled, onRejected) {
   let self = this;
   let promise2 = null;
+  onFulfilled =
+    typeof onFulfilled === "function"
+      ? onFulfilled
+      : (value) => {
+          return value;
+        };
+  onRejected =
+    typeof onRejected === "function"
+      ? onRejected
+      : (reason) => {
+          throw reason;
+        };
   promise2 = new MyPromise((resolve, reject) => {
     if (self.state === PENDING) {
       self.onFulfilledCallbacks.push(() => {
+        setTimeout(() => {
+          try {
+            let x = onFulfilled(self.value);
+            self.resolvePromise(promise2, x, resolve, reject);
+          } catch (reason) {
+            reject(reason);
+          }
+        }, 0);
+      });
+      self.onRejectedCallbacks.push(() => {
+        setTimeout(() => {
+          try {
+            let x = onRejected(self.reason);
+            self.resolvePromise(promise2, x, resolve, reject);
+          } catch (reason) {
+            reject(reason);
+          }
+        }, 0);
+      });
+    }
+    if (self.state === FULFILLED) {
+      setTimeout(() => {
         try {
           let x = onFulfilled(self.value);
           self.resolvePromise(promise2, x, resolve, reject);
         } catch (reason) {
           reject(reason);
         }
-      });
-      self.onRejectedCallbacks.push(() => {
+      }, 0);
+    }
+    if (self.state === REJECTED) {
+      setTimeout(() => {
         try {
-          let x = onRejected(self.reason);
+          let x = onRejected(self.value);
           self.resolvePromise(promise2, x, resolve, reject);
         } catch (reason) {
           reject(reason);
         }
-      });
-    }
-    if (self.state === FULFILLED) {
-      try {
-        let x = onFulfilled(self.value);
-        self.resolvePromise(promise2, x, resolve, reject);
-      } catch (reason) {
-        reject(reason);
-      }
-    }
-    if (self.state === REJECTED) {
-      try {
-        let x = onRejected(self.value);
-        self.resolvePromise(promise2, x, resolve, reject);
-      } catch (reason) {
-        reject(reason);
-      }
+      }, 0);
     }
   });
   if (self.state === "fulfilled") {
@@ -134,36 +154,86 @@ MyPromise.prototype.resolvePromise = function (promise2, x, resolve, reject) {
     resolve(x);
   }
 };
+MyPromise.prototype.catch = function (onRejected) {
+  return this.then(null, onRejected);
+};
+MyPromise.prototype.finally = function (fn) {
+  return this.then(
+    (value) => {
+      fn();
+      return value;
+    },
+    (reason) => {
+      fn();
+      throw reason;
+    }
+  );
+};
+MyPromise.prototype.done = function (fn) {
+  this.catch((reason) => {
+    console.log("done", reason);
+    throw reason;
+  });
+};
 
-let promise = new MyPromise(function (resolve, reject) {
-  setTimeout(function () {
-    resolve(123);
+MyPromise.all = function (promiseArr) {
+  return new MyPromise((resolve, reject) => {
+    let result = [];
+
+    promiseArr.forEach((promise, index) => {
+      promise.then((value) => {
+        result[index] = value;
+
+        if (result.length === promiseArr.length) {
+          resolve(result);
+        }
+      }, reject);
+    });
+  });
+};
+
+MyPromise.race = function (promiseArr) {
+  return new MyPromise((resolve, reject) => {
+    promiseArr.forEach((promise, index) => {
+      console.log("index", index);
+      promise.then((value) => {
+        resolve(value);
+      }, reject);
+    });
+  });
+};
+
+let promise1 = new MyPromise((resolve, reject) => {
+  console.log("aaaa");
+  setTimeout(() => {
+    resolve(1111);
+    console.log(1111);
   }, 1000);
 });
 
-promise
-  .then(
-    (value) => {
-      console.log("value1", value);
-      return new MyPromise((resolve, reject) => {
-        resolve(456);
-      }).then((value) => {
-        return new MyPromise((resolve, reject) => {
-          resolve(789);
-        });
-      });
-    },
-    (reason) => {
-      console.log("reason1", reason);
-    }
-  )
-  .then(
-    (value) => {
-      console.log("value2", value);
-    },
-    (reason) => {
-      console.log("reason2", reason);
-    }
-  );
+let promise2 = new MyPromise((resolve, reject) => {
+  console.log("bbbb");
+  setTimeout(() => {
+    reject(2222);
+    console.log(2222);
+  }, 2000);
+});
 
-console.log(promise);
+let promise3 = new MyPromise((resolve, reject) => {
+  console.log("cccc");
+  setTimeout(() => {
+    resolve(3333);
+    console.log(3333);
+  }, 3000);
+});
+
+Promise.race([promise1, promise2, promise3]).then(
+  (value) => {
+    console.log("all value", value);
+  },
+  (reason) => {
+    console.log("all reason", reason);
+  }
+);
+
+// console.log(promise);
