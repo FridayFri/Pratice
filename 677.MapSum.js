@@ -38,4 +38,4 @@ MapSum.prototype.sum = function (prefix) {
 var obj = new MapSum();
 obj.insert("apple", 3);
 obj.insert("app", 2);
-console.log(obj);
+console.log(obj.sum('ap'));
