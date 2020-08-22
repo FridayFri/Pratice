@@ -5,17 +5,17 @@ var luckyNumbers = function (matrix) {
     let min,
       max,
       index,
-      col = null;
-
+      col = [];
     min = Math.min(...row);
     index = row.indexOf(min);
-    col = new Array();
     for (let row of matrix) {
       col.push(row[index]);
+      console.log(col,min);
     }
     max = Math.max(...col);
-    if (min === max) {
-      ans.push(min);
+    console.log('max', max)
+    if (max === min) {
+      ans.push(max);
     }
   }
   return ans;
