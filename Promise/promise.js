@@ -1,9 +1,7 @@
 const PENDING = "pending";
 const FULFILLED = "fulfilled";
 const REJECTED = "rejected";
-function MyPromise(executor) {
-    
-}
+function MyPromise(executor) {}
 MyPromise.prototype.then = function (onFulfilled, onRejected) {};
 MyPromise.prototype.catch = function (onRejected) {};
 MyPromise.prototype.finally = function (fn) {};

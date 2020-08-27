@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>requestAnimationFrame</title>
+  </head>
+  <style>
+    #a {
+      font-size: 30px;
+    }
+  </style>
+
+  <body>
+    <div id="a"></div>
+    <div id="a"></div>
+    <script>
+      var e = document.getElementById("a");
+      var flag = true;
+      var left = 0;
+
+      function render() {
+        if (flag == true) {
+          if (left >= 60) {
+            flag = false;
+          }
+          e.innerHTML = left++;
+        } else {
+          if (left <= 0) {
+            flag = true;
+          }
+          e.innerHTML = left--;
+        }
+      }
+
+      (function animloop() {
+          console.log('animloop')
+        render();
+        var a = window.requestAnimationFrame(animloop);
+      })();
+      for (let i = 0; i < 10000; i++) {
+        console.log(i);
+      }
+    </script>
+  </body>
+</html>
