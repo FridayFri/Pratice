@@ -1,19 +1,16 @@
-// class MyPromise {
-//   constructor(run) {
-//     this.observerList = [];
-//     console.log('observerList', this.observerList)
-//     const notifyAll = (value) =>
-//       this.observerList.forEach((callback) => callback(value));
-//     run(notifyAll);
-//   }
-//   subscribe(callback) {
-//     this.observerList.push(callback);
-//   }
-// }
 
-// const p = new MyPromise((resolve) => {
-//   resolve(222);
-//   console.log(111);
-// });
+function transform(obj){
+    let res = new Array(12).fill(null)
+    for(let index in obj){
+        res[index-1] = obj[index]
+    }
+    return res
+}
 
-// p.subscribe((data) => console.log(data));
+
+const obj = {
+    1:222,
+    2:123,
+    5:888
+}
+console.log(transform(obj))
