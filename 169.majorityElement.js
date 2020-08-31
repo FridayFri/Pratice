@@ -15,7 +15,6 @@ var majorityElement = function (nums) {
   const res = [...map]
   res.sort((a, b) => b[1] - a[1]);
   return res[0][0]
-  console.log(res)
 };
 const nums = [2, 2, 1, 1, 1, 2, 2];
 console.log(majorityElement(nums));
