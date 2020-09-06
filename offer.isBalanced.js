@@ -18,6 +18,7 @@ var isBalanced = function (root) {
   if (Math.abs(left - right) > 1) {
     return false;
   }
+  // 每颗子树都要符合
   return isBalanced(root.left) && isBalanced(root.right);
 };
 
@@ -27,14 +28,3 @@ var dfs = function (root) {
   }
   return Math.max(dfs(root.left), dfs(root.right)) + 1;
 };
-
-const root = {
-    val: 3,
-    left: { val: 9, left: null, right: null },
-    right: {
-      val: 20,
-      left: { val: 15, left: null, right: null },
-      right: { val: 7, left: null, right: null },
-    },
-  };
-console.log(isBalanced(root))
