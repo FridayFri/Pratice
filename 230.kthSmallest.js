@@ -1,5 +1,5 @@
 var kthSmallest = function (root, k) {
-  const arr = bst(root).sort((a, b) => a - b);
+  const arr = bst(root)
   return arr[k - 1];
 };
 
@@ -20,5 +20,5 @@ const root = new TreeNode(3);
 root.left = new TreeNode(9);
 root.right = new TreeNode(20);
 root.right.left = new TreeNode(15);
-root.right.right = new TreeNode(7);
+root.right.right = new TreeNode(30);
 console.log(kthSmallest(root, 3));
