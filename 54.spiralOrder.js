@@ -15,7 +15,6 @@ var spiralOrder = function (matrix) {
 
 //逆时针旋转矩阵90°
 function rateMatrix(matrix) {
-  console.log("matrix", matrix);
   let r = matrix.length;
   if (!r) return [];
   let c = matrix[0].length;
