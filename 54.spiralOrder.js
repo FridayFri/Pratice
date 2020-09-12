@@ -15,18 +15,20 @@ var spiralOrder = function (matrix) {
 
 //逆时针旋转矩阵90°
 function rateMatrix(matrix) {
+  // 行
   let r = matrix.length;
-  if (!r) return [];
+  if (!r) {
+    return [];
+  }
+  // 列
   let c = matrix[0].length;
   let list = [];
   for (let i = c - 1; i >= 0; i--) {
-    // 列
-    let _rlist = [];
+    let rlist = [];
     for (let j = 0; j < r; j++) {
-      // 行
-      _rlist.push(matrix[j][i]);
+      rlist.push(matrix[j][i]);
     }
-    list.push(_rlist);
+    list.push(rlist);
   }
   return list;
 }
