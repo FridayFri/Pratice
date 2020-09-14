@@ -51,7 +51,7 @@ var deserialize = function (data) {
   let cur = 1;
   while (cur < list.length) {
     const node = queue.shift();
-    const leftVal = list[cur];
+    const leftVal = list[cur]; 
     const rightVal = list[cur + 1];
     if (leftVal != "X") {
       const leftNode = new TreeNode(leftVal);
