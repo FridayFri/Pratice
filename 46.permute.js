@@ -15,8 +15,10 @@ function backtrack(list, tempList, nums) {
   for (let i = 0; i < nums.length; i++) {
     if (tempList.includes(nums[i])) continue;
     tempList.push(nums[i]);
+    console.log('1', tempList);
     backtrack(list, tempList, nums);
     tempList.pop();
+    console.log('2',i, tempList);
   }
 }
 
