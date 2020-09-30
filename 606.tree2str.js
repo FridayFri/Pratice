@@ -21,6 +21,7 @@ var tree2str = function (t) {
   if (!t.right && leftStr === "()") {
     leftStr = "";
   }
+  console.log(leftStr,rightStr)
   return `${t.val.toString()}${leftStr}${rightStr}`;
 };
 
