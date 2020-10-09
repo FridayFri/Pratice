@@ -9,7 +9,6 @@ var containsNearbyDuplicate = function (nums, k) {
         set.delete(nums[i - k]);
     }
   }
-  console.log(set)
   return false; 
 };
 var nums = [1, 2, 3, 1,2,3],
