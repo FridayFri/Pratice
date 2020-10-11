@@ -13,7 +13,7 @@ var countNodes = function (root) {
       res++;
     }
   }
-  return res;
+  return res; 
 };
 
 const root = {
