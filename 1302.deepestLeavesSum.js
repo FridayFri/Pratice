@@ -17,7 +17,6 @@ var deepestLeavesSum = function (root) {
     }
     obj[res] = sum;
   }
-  console.log(obj)
   return obj[res];
 };
 const root = {
