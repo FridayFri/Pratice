@@ -20,7 +20,6 @@ var findLeastNumOfUniqueInts = function (arr, k) {
       res[j][1] -= k;
     }
   }
-  console.log(map, res);
   return res.slice(flag, len).length;
 };
 
