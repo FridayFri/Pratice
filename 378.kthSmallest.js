@@ -6,7 +6,7 @@
 var kthSmallest = function (matrix, k) {
   let res = [];
   for (let i = 0; i < matrix.length; i++) {
-    res = [...matrix[i], ...res];
+    res = res.concat(matrix[i])
   }
   const result = res.sort((a, b) => a - b);
   return result[k - 1];
