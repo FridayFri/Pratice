@@ -4,7 +4,6 @@ var maxCoins = function (piles) {
   let res = 0;
   for (let i = 0; i < k; i++) {
     res += piles[i * 2 + 1];
-    console.log(res);
   }
   return res;
 };
