@@ -9,5 +9,5 @@ var maxCoins = function (piles) {
 };
 
 console.log(
-  maxCoins((piles = [4, 4, 17, 7, 16, 16, 16, 15, 2, 3, 1, 17, 6, 12, 9]))
+  maxCoins((piles = [4, 4, 17, 7, 16, 16, 16, 15, 2, 3, 1, 17, 6, 12]))
 );
