@@ -23,4 +23,22 @@ var isCousins = function (root, x, y) {
   return first.height === second.height && first.parent !== second.parent;
 };
 
-console.log(isCousins((root = [1, 2, 3, 4]), (x = 4), (y = 3)));
+const root = {
+  val: 1,
+  left: {
+    val: 2,
+    left: {
+      val: 3,
+      right: null,
+      left: null,
+    },
+    right: null,
+  },
+  right: {
+    val: 4,
+    left: null,
+    right: null,
+  },
+};
+
+console.log(isCousins(root, (x = 4), (y = 3)));
