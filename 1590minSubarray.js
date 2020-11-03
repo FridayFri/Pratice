@@ -17,7 +17,6 @@ var minSubarray = function (nums, p) {
     }
     preMap[prefixSum[i] % p] = i;
   }
-  console.log(res, sum, len, r, prefixSum, preMap);
   return res === Infinity || res === len ? -1 : res;
 
 };
