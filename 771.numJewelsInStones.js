@@ -6,7 +6,7 @@ var numJewelsInStones = function(J, S) {
             res++
         }
     }
-    return res
+    return res 
 };
 
 console.log(numJewelsInStones(J = "aA", S = "aAAbbbb"))
