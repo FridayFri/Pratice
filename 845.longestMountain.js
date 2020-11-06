@@ -15,14 +15,12 @@ var longestMountain = function (A) {
       dp2[i] = dp2[i + 1] + 1;
     }
   }
-  console.log(dp1,dp2)
   let res = 0;
   for (let i = 1; i < n-1; i++) {
     if (dp1[i] > 1 && dp2[i] > 1) {
       const cur = dp1[i] + dp2[i] - 1;
       res = Math.max(res, cur);
     }
-    console.log(res)
   }
   return res;
 };
