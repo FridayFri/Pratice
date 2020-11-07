@@ -8,7 +8,7 @@ var maxCoins = function (piles) {
   return res;
 };
 
-console.log(
+console.log( 
   maxCoins((piles = [4, 4, 17, 7, 16, 16, 16, 15, 2, 3, 1, 17, 6]))
 );
 
