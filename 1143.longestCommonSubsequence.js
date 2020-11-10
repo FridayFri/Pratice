@@ -22,4 +22,4 @@ var longestCommonSubsequence = function (text1, text2) {
   return dp[m][n];
 };
 
-console.log(longestCommonSubsequence((text1 = "abcde"), (text2 = "ace")));
+console.log(longestCommonSubsequence((text1 = "abce"), (text2 = "ace")));
