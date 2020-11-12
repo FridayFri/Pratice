@@ -23,7 +23,7 @@ function myFlat() {
 Array.prototype.myFlat = myFlat;
 
 arr = arr.myFlat(); // [1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12, 13, 14, 10]
-console.log(arr);
+// console.log(arr);
 
 Array.prototype.flat = function () {
   let newArr = [];
@@ -39,4 +39,20 @@ Array.prototype.flat = function () {
   cycle(arr);
   return newArr;
 };
-console.log(arr.flat());
+// console.log(arr.flat());
+
+// reduce
+const myFlatReduce = (arr) => {
+  return arr.reduce((pre, cur) => {
+    return pre.concat(Array.isArray(cur) ? myFlat(cur) : cur);
+  }, []);
+};
+// console.log(myFlatReduce(arr));
+// [12, 23, 34, 56, 78, 90, 100, 110, 120, 130, 140]
+
+const flatReduce = (arr) => {
+  return arr.reduce((pre, cur) => {
+    return pre.concat(Array.isArray(cur) ? flatReduce(cur) : cur);
+  }, []);
+};
+console.log(flatReduce(arr));
