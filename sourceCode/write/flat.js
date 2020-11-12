@@ -23,20 +23,20 @@ function myFlat() {
 Array.prototype.myFlat = myFlat;
 
 arr = arr.myFlat(); // [1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12, 13, 14, 10]
-console.log(arr)
+console.log(arr);
 
-Array.prototype.flat = function(){
-    let newArr = []
-    let cycle = (arr)=>{
-        for(let i=0;i<arr.length;i++){
-            if(Array.isArray(arr[i])){
-                cycle(arr[i])
-            }else{
-                newArr.push(arr[i])
-            }
-        }
+Array.prototype.flat = function () {
+  let newArr = [];
+  let cycle = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i])) {
+        cycle(arr[i]);
+      } else {
+        newArr.push(arr[i]);
+      }
     }
-    cycle(arr)
-    return newArr
-}
-console.log(arr.flat())
+  };
+  cycle(arr);
+  return newArr;
+};
+console.log(arr.flat());
