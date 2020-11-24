@@ -62,7 +62,7 @@ class Observer1 {
   }
   update(student) {
     console.log(
-      "当前" + this.name + "被通知了",
+      "当前" + this.name + " 被通知了",
       "当前学生的状态是" + student.state
     );
   }
