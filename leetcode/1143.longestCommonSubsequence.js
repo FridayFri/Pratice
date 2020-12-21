@@ -19,7 +19,7 @@ var longestCommonSubsequence = function (text1, text2) {
       }
     }
   }
-  return dp[m][n];
+  return dp[m][n]; 
 };
 
 console.log(longestCommonSubsequence((text1 = "abce"), (text2 = "ace")));
