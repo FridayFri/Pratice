@@ -10,10 +10,8 @@ var combine = function (n, k) {
     for (let i = start; i <= n; i++) {
       // 枚举出所有选择
       path.push(i); // 选择
-      console.log('path', path,i)
       helper(i + 1, path); // 向下继续选择
       path.pop(); // 撤销选择
-      console.log('path1', path,i)
     }
   };
 
