@@ -95,4 +95,4 @@ promise.then(
   }
 );
 
-// console.log(promise);
+console.log(promise);
