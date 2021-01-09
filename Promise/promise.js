@@ -40,22 +40,45 @@ function MyPromise(executor) {
 
 MyPromise.prototype.then = function (onFulfilled, onRejected) {
   let self = this;
-  console.log(self)
-  if (self.state === PENDING) {
-    self.onFulfilledCallbacks.push(() => {
-      onFulfilled(self.value);
-    });
-    self.onRejectedCallbacks.push(() => {
-      onRejected(self.reason);
-    });
-  }
-  if (self.state === FULFILLED) {
-    onFulfilled(self.value);
-  }
+  let promise2 = null;
+  promise2 = new MyPromise((resolve, reject) => {
+    if (self.state === PENDING) {
+      self.onFulfilledCallbacks.push(() => {
+        try {
+          let x = onFulfilled(self.value);
+          self.resolvePromise(promise2, x, resolve, reject);
+        } catch (reason) {
+          reject(reason);
+        }
+      });
+      self.onRejectedCallbacks.push(() => {
+        try {
+          let x = onRejected(self.value);
+          self.resolvePromise(promise2, x, resolve, reject);
+        } catch (reason) {
+          reject(reason);
+        }
+      });
+    }
+    if (self.state === FULFILLED) {
+      try {
+        let x = onFuifilled(self.value);
+        self.resolvePromise(promise2, x, resolve, reject);
+      } catch (reason) {
+        reject(reason);
+      }
+    }
 
-  if (self.state === REJECTED) {
-    onRejected(self.reason);
-  }
+    if (self.state === REJECTED) {
+      try {
+        let x = onRejected(self.reason);
+        self.resolvePromise(promise2, x, resolve, reject);
+      } catch (reason) {
+        reject(reason);
+      }
+    }
+  });
+  return promise2
 };
 MyPromise.prototype.catch = function (onRejected) {};
 MyPromise.prototype.finally = function (fn) {};
