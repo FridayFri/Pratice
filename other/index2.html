@@ -13,11 +13,28 @@
   </head>
 
   <body>
-    <div id="click" class="click" onclick="show()">Click</div>
+    <div id="box">
+      <a href="javascript:console.log(1)" id="anchor">Click</a>
+    </div>
   </body>
   <script>
-    function show() {
-      console.log("show");
-    }
+    var box = document.getElementById("box");
+    var anchor = document.getElementById("anchor");
+
+    anchor.addEventListener("click", function () {
+      console.log(2);
+    });
+
+    box.addEventListener(
+      "click",
+      function () {
+        console.log(3);
+      },
+      true
+    );
+
+    box.addEventListener("click", function () {
+      console.log(4);
+    });
   </script>
 </html>
