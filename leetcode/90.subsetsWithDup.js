@@ -2,7 +2,6 @@ var subsetsWithDup = function (nums) {
   let res = [];
   nums.sort((a, b) => a - b);
   let dfs = (t, start) => {
-    console.log(t,start);
     res.push(t);
     for (let i = start; i < nums.length; i++) {
       // 同层重复，跳过
