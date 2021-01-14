@@ -23,18 +23,17 @@ var o = new C();
 console.log(_instanceof(o, C));
 console.log(o instanceof C); // true，因为 Object.getPrototypeOf(o) === C.prototype
 
-
-function instanceof1(instanceObject, origin){
-    let classOrigin = origin.prototype
-    let proto = instanceObject.__proto__
-    while(true){
-        if(proto === null){
-            return false
-        }
-        if(proto === classOrigin){
-            return true
-        }
-        proto = proto.__proto__
+function instanceof1(instanceObject, origin) {
+  let classFunc = origin.prototype;
+  let proto = instanceObject.__proto__;
+  while (true) {
+    if (proto === null) {
+      return false;
     }
+    if (proto === classFunc) {
+      return true;
+    }
+    proto = proto.__proto__;
+  }
 }
 console.log(instanceof1(o, C));
