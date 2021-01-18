@@ -18,14 +18,14 @@ function deepCopy(obj) {
   }
   return result;
 }
+
 function deepClone(obj) {
   let result = {};
   let keys = Object.keys(obj),
-    key = null,
-    temp = null;
-
+    key = null;
+  temp = null;
   for (let i = 0; i < keys.length; i++) {
-    key = keys[i];
+    key = key[i];
     temp = obj[key];
     if (temp && typeof temp === "object") {
       result[key] = deepClone(temp);
@@ -33,5 +33,5 @@ function deepClone(obj) {
       result[key] = temp;
     }
   }
-  return result;
+  return result
 }
