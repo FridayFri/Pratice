@@ -38,14 +38,13 @@ Promise.all = function (promises) {
 
 function ispromise(val) {
   return typeof val.then === "function";
-  
 }
 
-Promise.all = function (promises) {
+Promise.all1 = function (promises) {
   return new Promise((resolve, reject) => {
     let arr = [];
     let index = 0;
-    const processData = (key, data) => {
+    const process = (key, data) => {
       arr[key] = data;
       if (++index === promises.length) {
         resolve(arr);
@@ -55,10 +54,10 @@ Promise.all = function (promises) {
       let result = promises[i];
       if (isPromise(result)) {
         result.then((data) => {
-          processData(i, data);
+          process(i, data);
         }, reject);
       } else {
-        processData(i, result);
+        process(i, result);
       }
     }
   });
