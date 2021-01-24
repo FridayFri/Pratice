@@ -38,6 +38,7 @@ Promise.all = function (promises) {
 
 function ispromise(val) {
   return typeof val.then === "function";
+  
 }
 
 Promise.all = function (promises) {
