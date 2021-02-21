@@ -8,6 +8,7 @@ function curry(fn, argus = []) {
     }
   };
 }
+
 function multiFn(x, y, z) {
   return x * y * z;
 }
