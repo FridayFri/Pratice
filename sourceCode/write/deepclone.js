@@ -18,25 +18,39 @@ function deepCopy(obj) {
   }
   return result;
 }
-function deepClone(obj) {
+const isObject = (target) =>
+  (typeof target === "object" || typeof target === "function") &&
+  target !== null;
+
+function deepClone(target, map = new Map()) {
   let result = {};
-  let keys = Object.keys(obj),
+  let keys = Object.keys(target),
     key = null,
     temp = null;
-  for (let i = 0; i < keys.length; i++) {
-    key = keys[i];
-    temp = obj[key];
-    if (temp && typeof temp === "object") {
-      result[key] = deepClone(temp);
-    } else {
-      result[key] = temp;
+    for(let i = 0;i<keys.length;i++){
+      key = keys[i]
+      temp = target[key]
+      if(isObject(temp)){
+        map.set(temp, true)
+        result[key] = deepClone(temp, map)
+      }else{
+        return target
+      }
     }
+  // 先判断该引用类型是否被 拷贝过
+  if (map.get(target)) {
+    return target;
   }
-  return result;
 }
-
-const a = {
-  b: 1,
-  c: "2",
+var A = {
+  a: 1,
+  b: [1, 2, 3],
+  c: {
+    0: 0,
+  },
+  d: undefined,
+  e: null,
+  f: new Date(),
 };
-console.log(deepClone(a));
+A.A = A;
+console.log(deepClone(A));
