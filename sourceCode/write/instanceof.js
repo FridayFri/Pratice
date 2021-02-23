@@ -24,13 +24,13 @@ console.log(_instanceof(o, C));
 console.log(o instanceof C); // true，因为 Object.getPrototypeOf(o) === C.prototype
 
 function instanceof1(instanceObject, origin) {
-  let classFunc = origin.prototype;
-  let proto = instanceObject.__proto__;
+  let originFuc = origin.prototype; // 获取原型
+  let proto = instanceObject.__proto__; // 获取原型链
   while (true) {
     if (proto === null) {
       return false;
     }
-    if (proto === classFunc) {
+    if (proto === originFuc) {
       return true;
     }
     proto = proto.__proto__;
