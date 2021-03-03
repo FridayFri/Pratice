@@ -31,8 +31,8 @@ const throttle1 = function (fn, delay = 500) {
 };
 
 const a = throttle1(fn, 1000);
-a();
-a();
-a();
-a();
-a();
+setTimeout(a, 500)
+setTimeout(a, 1000)
+setTimeout(a, 1500)
+setTimeout(a, 2000)
+setTimeout(a, 2500)

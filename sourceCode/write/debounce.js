@@ -1,7 +1,6 @@
 function debounce(func, wait = 1000) {
   let timer = null;
   return function anonymous(...params) {
-      console.log(params,'2')
     clearTimeout(timer);
     timer = setTimeout(() => {
       timer = null;
@@ -12,5 +11,27 @@ function debounce(func, wait = 1000) {
 function func() {
   console.log(111);
 }
-const a = debounce(func);
-a(11)
+const a = debounce1(func);
+function debounce1(func, wait = 1000) {
+  let timer = null;
+  return function (...argus) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      console.log(timer);
+      func.call(this, argus);
+    }, wait);
+  };
+}
+
+// while(1){
+//   a(11)
+// }
+a(11);
+a(11);
+a(11);
+a(11);
+a(11);
+a(11);
+a(11);
+a(11);
+a(11);
