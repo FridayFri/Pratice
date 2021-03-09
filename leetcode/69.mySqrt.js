@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-05-03 16:17:25
+ * @LastEditTime: 2021-03-09 23:59:08
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /Practice/leetcode/69.mySqrt.js
+ */
 var mySqrt = function (x) {
   if (x === 1) {
     return 1;
@@ -12,7 +20,6 @@ var mySqrt = function (x) {
       min = mid;
     }
   }
-
   return parseInt(min);
 };
 
