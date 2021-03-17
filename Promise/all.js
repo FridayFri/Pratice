@@ -44,7 +44,7 @@ Promise.all1 = function (promises) {
   return new Promise((resolve, reject) => {
     let arr = [];
     let index = 0;
-    const process = (key, data) => {
+    const processData = (key, data) => {
       arr[key] = data;
       if (++index === promises.length) {
         resolve(arr);
@@ -54,10 +54,10 @@ Promise.all1 = function (promises) {
       let result = promises[i];
       if (isPromise(result)) {
         result.then((data) => {
-          process(i, data);
+          processData(i, data);
         }, reject);
       } else {
-        process(i, result);
+        processData(i, data);
       }
     }
   });
