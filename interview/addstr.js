@@ -17,7 +17,6 @@ function add1(a, b) {
   for (let i = maxLength - 1; i >= 0; i--) {
     t = parseInt(a[i]) + parseInt(b[i]) + f;
     f = Math.floor(t / 10);
-    console.log(sum)
     sum = (t % 10) + sum;
   }
   if (f == 1) {
