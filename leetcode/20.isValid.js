@@ -15,7 +15,7 @@ var isValid = function (s) {
     }
     console.log(res, key);
   }
-  return res.length === 1;
+  return !res.length;
 };
 
 console.log(isValid("()))"));
