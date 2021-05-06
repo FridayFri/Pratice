@@ -18,4 +18,4 @@ var isValid = function (s) {
   return !res.length;
 };
 
-console.log(isValid("()))"));
+console.log(isValid("())"));
