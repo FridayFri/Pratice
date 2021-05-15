@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-05-14 09:23:15
- * @LastEditTime: 2021-05-14 09:34:18
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-05-15 23:10:03
+ * @LastEditors: your name
  * @Description: In User Settings Edit
  * @FilePath: /Practice/leetcode/1232.checkStraightLine.js
  */
