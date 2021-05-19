@@ -20,7 +20,6 @@ var rotate = function (matrix) {
   }
 };
 
-
 console.log(
   rotate([
     [1, 2, 3],
