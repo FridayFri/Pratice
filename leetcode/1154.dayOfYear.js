@@ -9,8 +9,7 @@ var dayOfYear = function (date) {
   for (let i = 0; i < dateArr[1] - 1; i++) {
     res += ds[i];
   }
-  console.log(res, isR);
-  if (isR && dateArr[1] > 2) {
+   if (isR && dateArr[1] > 2) {
     res++;
   }
   return res + +dateArr[2];
