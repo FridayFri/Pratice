@@ -14,5 +14,4 @@ var majorityElement = function (nums) {
   }
   return -1;
 };
-
 console.log(majorityElement([1, 2, 5, 9, 5, 9, 5, 5, 5]));
