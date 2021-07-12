@@ -3,6 +3,9 @@
  * @return {string[]}
  */
 var letterCombinations = function (digits) {
+  if (!digits) {
+    return [];
+  }
   const obj = {
     2: ["a", "b", "c"],
     3: ["d", "e", "f"],
@@ -13,9 +16,17 @@ var letterCombinations = function (digits) {
     8: ["t", "u", "v"],
     9: ["w", "x", "y", "z"],
   };
-  const res=[]
-  const temp = digits.split('')
-  console.log('temp', temp)
+  let result = [""];
+  for (const d of digits) {
+    let temp = [];
+    for (const p of result) {
+      for (const t of obj[d]) {
+        temp.push(p + t);
+      }
+    }
+    result = temp;
+  }
+  return result;
 };
 
 console.log(letterCombinations("23"));
