@@ -24,6 +24,7 @@ var letterCombinations = function (digits) {
         temp.push(p + t);
       }
     }
+    console.log('temp',temp)
     result = temp;
   }
   return result;
