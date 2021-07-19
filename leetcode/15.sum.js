@@ -1,24 +1,31 @@
 var threeSum = function (nums) {
-  if (nums.length < 3) return [];
+  nums.sort((a, b) => a - b);
   const res = [];
-  for (let i = 0; i < nums.length-2; i++) {
-    for (let j = i + 1; j < nums.length; j++) {
-      for (let m = j + 1; m < nums.length; m++) {
-        if (nums[i] + nums[j] + nums[m] === 0) {
-          res.push([nums[i], nums[j], nums[m]]);
-        }
+  for (let i = 0; i < nums.length - 2; i++) {
+    let n1 = nums[i];
+    if (n1 > 0) break;
+    if (i - 1 >= 0 && n1 == nums[i - 1]) continue;
+    let left = i + 1;
+    let right = nums.length - 1;
+    while (left < right) {
+      let n2 = nums[left],
+        n3 = nums[right];
+      if (n1 + n2 + n3 === 0) {
+        res.push([n1, n2, n3]);
+        while (left < right && nums[left] == n2) left++; // 直到指向不一样的数
+        while (left < right && nums[right] == n3) right--; // 直到指向不一样的数
+      } else if (n1 + n2 + n3 < 0) {
+        left++;
+      } else {
+        right--;
       }
     }
   }
-  return duplicate2(res);
+  return res
 };
-function duplicate2(arr) {
-  let res = {};
-  arr.forEach((item) => {
-    item.sort((a, b) => a - b);
-    res[item] = item;
-  });
-  return Object.values(res);
-}
 
-console.log(threeSum([0, 0,0]));
+console.log(
+  threeSum([
+    4, -5, -8, 9, -7, -7, -1, -5, 8, 3, -3, 4, 3, -4, 9, -5, -5, -3, 2, 2,
+  ])
+);
