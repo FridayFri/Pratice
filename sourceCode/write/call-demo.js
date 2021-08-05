@@ -1,34 +1,11 @@
-// 实现一个call
-Function.prototype.myCall = function (thisArg, ...arr) {
-  if (thisArg === null || thisArg === undefined) {
-    thisArg = window;
-  } else {
-    thisArg = new Object(thisArg);
-  }
-  const specialMethod = Symbol("anything");
-  console.log(specialMethod);
-  thisArg[specialMethod] = this;
-  let result = thisArg[specialMethod](...arr);
-  delete thisArg[specialMethod];
-  return result;
-};
-
-let obj = {
-  name: "coffe1891",
-};
-
-function func() {
-  console.log(this.name);
-}
-
-//   func.myCall(obj);
-console.log(func.myCall(obj));
-
 Function.prototype.mCall = function (thisArg, ...arr) {
   if (thisArg === null || thisArg === undefined) {
+    // 指向null 和 undefined 的this值会自动指向全局对象
     thisArg = window;
   } else {
-    thisArg = new Object(thisArg);
+    console.log('thisArg111', thisArg)
+    // thisArg = Object(thisArg);
+    console.log('thisArg', thisArg)
   }
   const specialMethod = Symbol("anything");
   thisArg[specialMethod] = this;
