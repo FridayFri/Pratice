@@ -38,10 +38,10 @@ Function.prototype._bind = function(context, ...params) {
 
 
 Function.prototype.cBind = function(context, ...params){
-  let _this = this 
-  return function(...args){
-    console.log('args', args, params)
-    _this.call(context,...params.concat(args))
+  let _this = this
+  return function anonymous(...args){
+    console.log('params', params, ...params)
+    _this.call(context, params.concat(args))
   }
 }
 

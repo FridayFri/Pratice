@@ -2,7 +2,16 @@ Function.prototype.mApply = function (context, args) {
   context = context === null ? window : context;
   let result;
   context["fn"] = this;
-  console.log(this);
+  console.log(this, ...args);
+  result = context["fn"](...args);
+  delete context["fn"];
+  return result;
+};
+
+Function.prototype.cApply = function (context, args) {
+  context = context === null ? window : context;
+  let result;
+  context["fn"] = this;
   result = context["fn"](...args);
   delete context["fn"];
   return result;
