@@ -4,15 +4,15 @@ var getSmallestString = function (n, k) {
     i = n - 1;
   while (remain) {
     if (remain > 25) {
-      remain -= 25;
       res[i] = "z";
+      remain -= 25;
       i--;
     } else {
       res[i] = String.fromCharCode(97 + remain);
-      remain = 0
+      break;
     }
   }
-  return res.join('')
+  return res.join("");
 };
 
 console.log(getSmallestString((n = 5), (k = 73)));
