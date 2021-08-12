@@ -16,21 +16,16 @@ function selectSort(arr) {
 }
 
 function select(arr) {
-  for (let i = 0; i < arr.length-1; i++) {
-    let min = arr[i];
-    let index = i;
+  for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
-      if (min > arr[j]) {
-        min = arr[j];
-        index = j;
+      if (arr[j] < arr[i]) {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
       }
     }
-    arr[index] = arr[i];
-    arr[i] = min;
   }
   return arr;
 }
 
 const arr = [3, 2, 1, 4, 6, 5];
-console.log(selectSort(arr));
+// console.log(selectSort(arr));
 console.log(select(arr));
