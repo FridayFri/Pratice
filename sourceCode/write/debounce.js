@@ -17,8 +17,8 @@ function debounce1(func, wait = 1000) {
   return function (...argus) {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      console.log(timer);
-      func.call(this, argus);
+      timer = null;
+      func.apply(this, argus);
     }, wait);
   };
 }
