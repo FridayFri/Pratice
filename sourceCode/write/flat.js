@@ -27,16 +27,18 @@ arr = arr.myFlat(); // [1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12, 13, 14, 10]
 
 Array.prototype.flat = function () {
   let newArr = [];
+  _this = this;
   let cycle = (arr) => {
     for (let i = 0; i < arr.length; i++) {
-      if (Array.isArray(arr[i])) {
-        cycle(arr[i]);
+      let item = arr[i];
+      if (Array.isArray(item)) {
+        cycle(item);
       } else {
-        newArr.push(arr[i]);
+        newArr.push(item);
       }
     }
   };
-  cycle(arr);
+  cycle(this);
   return newArr;
 };
 // console.log(arr.flat());
@@ -55,4 +57,4 @@ const flatReduce = (arr) => {
     return pre.concat(Array.isArray(cur) ? flatReduce(cur) : cur);
   }, []);
 };
-console.log(flatReduce(arr));
+console.log(arr.flat(),flatReduce(arr));
