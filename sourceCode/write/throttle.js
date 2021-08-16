@@ -19,20 +19,19 @@ function fn() {
 const throttle1 = function (fn, delay = 500) {
   let timer = null,
     flag = true;
-  return function anonymous(...argus) {
+  return function (...args) {
     if (!flag) return;
     flag = false;
-    clearTimeout(timer);
     timer = setTimeout(() => {
-      fn.call(this, argus);
+      fn.apply(this, args);
       flag = true;
     }, delay);
   };
 };
 
 const a = throttle1(fn, 1000);
-setTimeout(a, 500)
-setTimeout(a, 1000)
-setTimeout(a, 1500)
-setTimeout(a, 2000)
-setTimeout(a, 2500)
+setTimeout(a, 500);
+setTimeout(a, 1000);
+setTimeout(a, 1500);
+setTimeout(a, 2000);
+setTimeout(a, 2500);
