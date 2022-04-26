@@ -1,0 +1,54 @@
+<div id="container">
+  <div id="app1"></div>
+</div>
+
+<script>
+  const $app1 = document.querySelector("#app1");
+  let activeEffect;
+  const effect = function (fn) {
+    activeEffect = fn;
+    fn();
+  };
+  const bucket = new WeakMap();
+  const state = new Proxy(
+    { text: "hello fatfish" },
+    {
+      get(target, key) {
+        const value = target[key];
+        if (!activeEffect) {
+          return;
+        }
+        let depsMap = bucket.get(target);
+        if (!depsMap) {
+          bucket.set(target, (depsMap = new Map()));
+        }
+        let deps = depsMap.get(key);
+        if (!deps) {
+          depsMap.set(key, (deps = new Set()));
+        }
+        deps.add(activeEffect);
+        console.log(`get ${key}: ${value}`);
+        return value;
+      },
+      set(target, key, newValue) {
+        console.log(`set ${key}: ${newValue}`);
+        target[key] = newValue;
+        const depsMap = bucket.get(target);
+        if (!depsMap) {
+          return;
+        }
+        const effects = depsMap.get(key);
+        effects && effects.forEach((fn) => fn());
+      },
+    }
+  );
+  // 改变app1的值
+  effect(function effect1() {
+    console.log("执行了effect");
+    $app1.innerText = state.text;
+  });
+  // 1秒钟之后两个div的值要分别改变
+  setTimeout(() => {
+    state.text = "hello Vue3";
+  }, 1000);
+</script>

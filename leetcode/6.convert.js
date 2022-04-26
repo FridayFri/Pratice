@@ -15,6 +15,7 @@ var convert = function (s, numRows) {
   let down = false;
   for (const c of s) {
     rows[loc] += c;
+    console.log('rows[loc]: ', rows[loc]);
     if (loc == 0 || loc == numRows - 1) down = !down;
     loc += down ? 1 : -1;
   }
