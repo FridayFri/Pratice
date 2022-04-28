@@ -5,10 +5,15 @@
 <script>
   const $app1 = document.querySelector("#app1");
   let activeEffect;
-  const effect = function (fn) {
-    activeEffect = fn;
-    fn();
-  };
+  function effect(fn) {
+    const effectFn = () => {
+      activeEffect = effectFn;
+      cleanup(effectFn); // 新增
+      fn();
+    };
+    effectFn.deps = [];
+    effectFn();
+  }
   const bucket = new WeakMap();
   const state = new Proxy(
     { text: "hello fatfish" },
@@ -28,10 +33,6 @@
     console.log("执行了effect");
     $app1.innerText = state.text;
   });
-  // 1秒钟之后两个div的值要分别改变
-  setTimeout(() => {
-    state.text = "hello Vue3";
-  }, 1000);
 
   function track(target, key) {
     if (!activeEffect) {
@@ -46,14 +47,29 @@
       depsMap.set(key, (deps = new Set()));
     }
     deps.add(activeEffect);
+    activeEffect.deps.push(deps);
   }
 
   function trigger(target, key) {
     const depsMap = bucket.get(target);
-    if (!depsMap) {
-      return;
-    }
+    if (!depsMap) return;
     const effects = depsMap.get(key);
-    effects && effects.forEach((fn) => fn());
+
+    const effectsToRun = new Set(effects); // 新增
+    effectsToRun.forEach((effectFn) => effectFn()); // 新增
+    effects && effects.forEach((fn) => fn()); // 删除
   }
+  function cleanup(effectFn) {
+    // 遍历 effectFn.deps 数组
+    for (let i = 0; i < effectFn.deps.length; i++) {
+      const deps = effectFn.deps[i];
+      deps.delete(effectFn);
+    }
+    effectFn.deps.length = 0;
+  }
+
+  // 1秒钟之后两个div的值要分别改变
+  setTimeout(() => {
+    state.text = "hello Vue3";
+  }, 1000);
 </script>
